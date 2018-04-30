@@ -1,0 +1,43 @@
+<html>
+
+<head>
+  <title>CAMERA TEST</title>
+</head>
+
+<body>
+
+  <video id="test"></video>
+
+  <script>
+    navigator.mediaDevices.getUserMedia({
+        video: {
+          advanced: [{
+            facingMode: "environment"
+          }]
+        }
+      })
+      .then(gotMedia)
+      .catch(error => console.error('getUserMedia() error:', error));
+
+    function gotMedia(mediaStream) {
+      //const mediaStreamTrack = mediaStream.getVideoTracks();
+      //const imageCapture = new ImageCapture(mediaStreamTrack);
+      document.getElementById("test").srcObject = mediaStream;
+      document.getElementById("test").play();
+      //console.log(imageCapture);
+      const track = mediaStream.getVideoTracks()[0];
+      window.setTimeout(() => (
+        track.applyConstraints({
+          advanced: [{
+            torch: true
+          }]
+        })
+      ), 500);
+
+
+
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Network</title>
+</head>
+
+<body>
+    <p id="online"></p>
+    <p id="wat"></p>
+    <p id="type"></p>
+
+    <script>
+        if(navigator.onLine){
+            document.getElementById("online").innerHTML = "Online";
+
+            document.getElementById("wat").innerHTML = "Via: " + navigator.connection.type;
+            document.getElementById("type").innerHTML = "Type: " + navigator.connection.effectiveType;
+
+
+        }else{
+            document.getElementById("online").innerHTML = "Offline"
+        }
+    </script>
+</body>
+
+</html>

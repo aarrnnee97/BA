@@ -1,0 +1,17 @@
+<html>
+<head>
+<title>Batterij</title>
+</head>
+<body>
+    
+<p id="info"></p>
+<p id="info1"></p>
+<script>
+ navigator.getBattery().then(function(battery) {
+  document.getElementById("info").innerHTML = "Aan het opladen? " + battery.charging;
+    document.getElementById("info1").innerHTML = "Niveau? " + battery.level * 100 + " %";
+  console.log(battery)
+  })
+</script>
+</body>
+</html>

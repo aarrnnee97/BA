@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Touch-Gestures</title>
+</head>
+
+<body>
+    <p id="info"></p>
+
+    <script>
+        var touchstartX = 0;
+        var touchstartY = 0;
+        var touchendX = 0;
+        var touchendY = 0;
+        var xDiff = 0;
+        var yDiff = 0;
+
+        window.addEventListener('touchstart', function (event) {
+            touchstartX = event.changedTouches[0].screenX;
+            touchstartY = event.changedTouches[0].screenY;
+        }, false);
+
+        window.addEventListener('touchend', function (event) {
+            touchendX = event.changedTouches[0].screenX;
+            touchendY = event.changedTouches[0].screenY;
+            handleGesture();
+        }, false);
+
+        window.addEventListener('click', function(event){
+            console.log("clicked");
+            document.getElementById("info").innerHTML = "clicked";
+        })
+
+        function handleGesture() {
+            xDiff = touchstartX - touchendX;
+            yDiff = touchstartY - touchendY;
+            
+            if(Math.abs(xDiff) > Math.abs(yDiff)){
+                if(xDiff > 0){
+                    //links
+                    console.log("LINKS");
+                    document.getElementById("info").innerHTML = "Links";
+                }
+                else{
+                    console.log("RECHTS");
+                    document.getElementById("info").innerHTML = "Rechts";
+                }
+            }
+            else{
+                if(yDiff > 0){
+                    console.log("OMHOOG");
+                    document.getElementById("info").innerHTML = "Omhoog";
+                }
+                else{
+                    console.log("BENEDEN");
+                    document.getElementById("info").innerHTML = "Beneden";
+                }
+            }
+            touchstartX = 0;
+            touchstartY = 0;
+            touchendX = 0;
+            touchendY = 0;           
+        }
+    </script>
+</body>
+
+</html>

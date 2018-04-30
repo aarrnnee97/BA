@@ -1,0 +1,19 @@
+<html>
+<head>
+<title>GPS</title>
+</head>
+<body>
+<p>GPS Positie:</p>
+<p id="startLat"></p>
+<p id="startLon"></p>
+
+<script>
+  var geoSuccess = function(position) {
+    document.getElementById('startLat').innerHTML = position.coords.latitude;
+    document.getElementById('startLon').innerHTML = position.coords.longitude;
+  };
+  navigator.geolocation.getCurrentPosition(geoSuccess);
+</script>
+</body>
+</html>
+

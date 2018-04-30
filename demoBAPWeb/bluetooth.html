@@ -1,0 +1,29 @@
+<html>
+<head>
+    <title>TEST</title>
+
+</head>
+
+<body>
+    <p id="info"></p>
+    <button id="click">Toon bluetooth device information</button>
+    <script>
+        document.getElementById("click").addEventListener("click",
+            function (evt) {
+                console.log("test");
+                navigator.bluetooth.requestDevice({
+                    "acceptAllDevices":
+                        true
+                }).then(device => { document.getElementById("info").innerHTML = "Gekozen: " + device.name});
+
+            });
+
+    </script>
+	<script>
+	navigator.bluetooth.requestDevice({
+                    "acceptAllDevices":
+                        true
+                }).then(device => { document.getElementById("info").innerHTML = "Gekozen: " + device.name});
+	</script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<html>
+
+<head>
+    <title>Sensoren</title>
+</head>
+
+<body>
+    <p id="acceleration"></p>
+    <p id="magneto"></p>
+    <p id="gyroscope"></p>
+    <p id="licht"></p>
+    <p id="nabijheid"></p>
+    <script>
+        /*
+                window.addEventListener('devicemotion', function (e) {
+                    document.getElementById("acceleration").innerHTML = "Acceleration: x: " + e.accelerationIncludingGravity
+                        .x + " y: " + e.accelerationIncludingGravity.y + " z: " + e.accelerationIncludingGravity.z;
+                    console.log(e);
+                });
+                */
+
+        const accelero = new Accelerometer();
+        accelero.start();
+        accelero.onreading = () => {
+            document.getElementById("acceleration").innerHTML = "Acceleration: x: " + accelero.x + " y: " +
+                accelero.y + " z: " + accelero.z;
+        };
+        accelero.onerror = () => {
+            document.getElementById("acceleration").innerHTML = "Acceleration: ERROR";
+        }
+
+        const magneto = new Magnetometer();
+        magneto.start();
+        magneto.onreading = () => {
+            document.getElementById("magneto").innerHTML = "Magnetometer: x: " + magneto.x + " y: " + magneto.y +
+                " z: " + magneto.z;
+        };
+        magneto.onerror = () => {
+            document.getElementById("magneto").innerHTML = "Magnetometer: ERROR";
+        }
+
+        const gyroscope = new Gyroscope();
+        gyroscope.start();
+        gyroscope.onreading = () => {
+            document.getElementById("gyroscope").innerHTML = "Gyroscoop: x: " + gyroscope.x + " y: " + gyroscope.y +
+                " z: " + gyroscope.z;
+        };
+        gyroscope.onerror = () => {
+            document.getElementById("gyroscope").innerHTML = "Gyroscoop: ERROR";
+        }
+
+
+        const light = new AmbientLightSensor();
+        light.start();
+        light.onreading = () => {
+            document.getElementById("licht").innerHTML = "Lichtsensor lx: " + light.illuminance;
+        };
+        light.onerror = () => {
+            document.getElementById("licht").innerHTML = "Lichtsensor: ERROR";
+        }
+
+        window.addEventListener('devicelight', function (event) {
+            document.getElementById("licht").innerHTML = "Licht lx: " + event.value;
+        });
+        /*
+                const nabij = new ProximitySensor();
+                nabij.start();
+                nabij.onreading = (e) => {
+                    document.getElementById("nabijheid").innerHTML = "Nabijheidsensor: " + e.reading.distance;
+                };
+                nabij.onerror = () => {
+                    document.getElementById("nabijheid").innerHTML = "Nabijheidsensor: ERROR";
+                }
+        */
+        window.addEventListener('deviceproximity', function (event) {
+            document.getElementById("nabijheid").innerHTML = "Nabijheid: " + event.value + "cm";
+        });
+
+
+        /*
+                window.addEventListener("deviceorientation", function (event) {
+                    console.log(event);
+                })
+
+                */
+    </script>
+</body>
+
+</html>

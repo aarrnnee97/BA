@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Microfoon</title>
+</head>
+
+<body>
+    <script>
+        navigator.mediaDevices.enumerateDevices().then(output => {
+            console.log(output);
+        });
+
+
+        navigator.mediaDevices.getUserMedia({
+                audio: true
+            })
+            .then(stream => {
+                var audio = document.createElement("audio");
+                audio.src = window.URL.createObjectURL(stream);
+                audio.play();
+            });
+    </script>
+</body>
+
+</html>
